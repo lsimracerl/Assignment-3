@@ -464,7 +464,7 @@ class MainApplication(tk.Tk):
             self.employee_manager.add_employee(new_employee)  # I add the new employee.
             self.employee_manager.save_employees()  # I save the changes to the file.
             self.refresh_employees()  # I refresh the employee list.
-            messagebox.showinfo("Success", "Employee added ")  # I show a success message.
+            messagebox.showinfo("Success", "Employee added successfully")  # I show a success message.
         except ValueError as ve:
             messagebox.showerror("Error", str(ve))  # I show an error if age is invalid.
         except KeyError as ke:
@@ -487,9 +487,9 @@ class MainApplication(tk.Tk):
                 self.client_manager.save_clients()  # I save the changes to the file.
                 self.client_list.delete(selected_item)  # I remove the client from the list.
             except KeyError:
-                messagebox.showerror("Error", "Client was not found.")  # I show an error message if client not found.
+                messagebox.showerror("Error", "Client not found.")  # I show an error message if client not found.
         else:
-            messagebox.showerror("Error", "No client found.")  # I show an error if no client is selected.
+            messagebox.showerror("Error", "No client selected.")  # I show an error if no client is selected.
 
     def build_client_tab(self):
         frame = ttk.LabelFrame(self.client_tab, text="Manage Clients")
@@ -501,11 +501,11 @@ class MainApplication(tk.Tk):
 
         ttk.Button(frame, text="Add Client", command=self.add_client).grid(row=1, column=0, columnspan=2)
 
-        self.client_list = ttk.Treeview(frame, columns=("ID", "Name", "Number"), show="headings")
+        self.client_list = ttk.Treeview(frame, columns=("ID", "Name", "Contact"), show="headings")
         self.client_list.grid(row=2, column=0, columnspan=2, sticky='nsew')
         self.client_list.heading("ID", text="ID")
         self.client_list.heading("Name", text="Name")
-        self.client_list.heading("Number", text="Number")
+        self.client_list.heading("Contact", text="Contact")
 
         ttk.Button(frame, text="Refresh List", command=self.refresh_clients).grid(row=3, column=0, columnspan=2)
 
@@ -692,13 +692,13 @@ class MainApplication(tk.Tk):
         self.supplier_address_entry = ttk.Entry(frame)
         self.supplier_address_entry.grid(row=1, column=1)
 
-        ttk.Label(frame, text="Number Details:").grid(row=2, column=0)
+        ttk.Label(frame, text="Contact Details:").grid(row=2, column=0)
         self.supplier_contact_entry = ttk.Entry(frame)
         self.supplier_contact_entry.grid(row=2, column=1)
 
         ttk.Button(frame, text="Add Supplier", command=self.add_supplier).grid(row=3, column=0, columnspan=2)
 
-        self.supplier_list = ttk.Treeview(frame, columns=("ID", "Name", "Address", "Number Details"), show="headings")
+        self.supplier_list = ttk.Treeview(frame, columns=("ID", "Name", "Address", "Contact Details"), show="headings")
         self.supplier_list.grid(row=4, column=0, columnspan=2, sticky='nsew')
         self.supplier_list.heading("ID", text="ID")
         self.supplier_list.heading("Name", text="Name")
@@ -767,12 +767,12 @@ class MainApplication(tk.Tk):
 
         ttk.Button(frame, text="Add Guest", command=self.add_guest).grid(row=3, column=0, columnspan=2)
 
-        self.guest_list = ttk.Treeview(frame, columns=("ID", "Name", "Address", "Number Details"), show="headings")
+        self.guest_list = ttk.Treeview(frame, columns=("ID", "Name", "Address", "Contact Details"), show="headings")
         self.guest_list.grid(row=4, column=0, columnspan=2, sticky='nsew')
         self.guest_list.heading("ID", text="ID")
         self.guest_list.heading("Name", text="Name")
         self.guest_list.heading("Address", text="Address")
-        self.guest_list.heading("Number Details", text="Number Details")
+        self.guest_list.heading("Contact Details", text="Contact Details")
 
         ttk.Button(frame, text="Refresh", command=self.refresh_guests).grid(row=5, column=0, columnspan=2)
 
